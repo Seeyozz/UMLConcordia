@@ -24,7 +24,7 @@ public class Login {
 
     public boolean tryconnect(String username, String password){
         for (int i = 0; i< database.length ; i++){
-            if (database[i][0].equalsIgnoreCase(username) && database[i][0].equals(password)) {
+            if (database[i][0].equalsIgnoreCase(username) && database[i][1].equals(password)) {
                 return true;
             }
         }
