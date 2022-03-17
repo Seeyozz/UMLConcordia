@@ -19,18 +19,38 @@ public class Main {
                     Login login = new Login();
                     while(!connected){
                         System.out.println("Enter you username: ");
-                        String username =input.nextLine();
+                        String username =input.next();
                         login.setUsername(username);
                         System.out.println("Enter your password");
-                        String password = input.nextLine();
+                        String password = input.next();
                         login.setPassword(password);
                         if(login.tryconnect(username,password)){
                             connected = true;
+                            System.out.println("\n ✅ You're connected ✅\n");
+                        }
+                        else{
+                            System.out.println("\n ❌ Wrong informations ❌\n");
                         }
                     }
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println("What do you want to do ?");
+                    clearScreen();
+                    System.out.println("What do you want to do ?\n1- Calculate your BMI\n2- Show medication list\n3- Show history");
+                    switch (input.nextInt()) {
+                        case 1 :
+                            BMI bmi = new BMI();
+                            System.out.println("Enter your age: ");
+                            int age = input.nextInt();
+                            bmi.setAge(age);
+                            System.out.println("Enter your height in cm: ");
+                            int height = input.nextInt();
+                            bmi.setHeight(height);
+                            System.out.println("Enter your weight: ");
+                            double weight = input.nextDouble();
+                            bmi.setWeight(weight);
+                            double userBMI = bmi.calculateBMI(bmi.getAge(), bmi.getWeight(), bmi.getHeight());
+                            System.out.println(userBMI);
+                            break;
+                    }
+
 
 
 
@@ -73,6 +93,21 @@ public class Main {
             }
         } while (!quit);
         System.out.println("Bye-bye!");
+    }
+    public static void clearScreen() {
+        {
+            try {
+                final String os = System.getProperty("os.name");
+
+                if (os.contains("Windows")) {
+                    Runtime.getRuntime().exec("cls");
+                } else {
+                    Runtime.getRuntime().exec("clear");
+                }
+            } catch (final Exception e) {
+                //  Handle any exceptions.
+            }
+        }
     }
 
 }
