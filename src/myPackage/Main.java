@@ -12,18 +12,19 @@ public class Main {
             System.out.println("""
                     What do you want to do?
                     1- Login
+                    2- Calculate BMI
                     0- Quit""");
             int menuItem = input.nextInt();
             switch (menuItem) {
                 case 1:
-                    Login login = new Login();
                     while(!connected){
                         System.out.println("Enter you username: ");
                         String username =input.next();
-                        login.setUsername(username);
                         System.out.println("Enter your password");
                         String password = input.next();
-                        login.setPassword(password);
+                        Login login = Login.getInstance(username, password);
+                        System.out.println(login.username);
+
                         if(login.tryconnect(username,password)){
                             connected = true;
                             System.out.println("\n ✅ You're connected ✅\n");
@@ -33,27 +34,6 @@ public class Main {
                         }
                     }
                     clearScreen();
-                    System.out.println("What do you want to do ?\n1- Calculate your BMI\n2- Show medication list\n3- Show history");
-                    switch (input.nextInt()) {
-                        case 1 :
-                            BMI bmi = new BMI();
-                            System.out.println("Enter your age: ");
-                            int age = input.nextInt();
-                            bmi.setAge(age);
-                            System.out.println("Enter your height in cm: ");
-                            int height = input.nextInt();
-                            bmi.setHeight(height);
-                            System.out.println("Enter your weight: ");
-                            double weight = input.nextDouble();
-                            bmi.setWeight(weight);
-                            double userBMI = bmi.calculateBMI(bmi.getAge(), bmi.getWeight(), bmi.getHeight());
-                            System.out.println(userBMI);
-                            break;
-                    }
-
-
-
-
                     break;
 
                 case 2:
@@ -68,8 +48,8 @@ public class Main {
                     double weight = input.nextDouble();
                     bmi.setWeight(weight);
                     double userBMI = bmi.calculateBMI(bmi.getAge(), bmi.getWeight(), bmi.getHeight());
+                    System.out.println("The BMI is: " + userBMI);
                     break;
-
                 case 3:
                     break;
 
@@ -80,7 +60,6 @@ public class Main {
                     break;
 
                 case 6:
-
                     break;
 
                 case 7:

@@ -1,26 +1,24 @@
 package myPackage;
 
 public class Login {
-    private String username;
-    private String password;
     private String[][] database = {{"pablo","password"},{"benjamin","123456"}};
-
-
-    public String getUsername() {
-        return username;
+    public static Login login;
+    public String username;
+    public String password;
+    private Login(String username, String password){
+        this.username=username;
+        this.password=password;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public static Login getInstance(String username, String password) {
+        if (login == null){ //Singleton
+            login = new Login(username, password);
+        }
+        return login;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
 
     public boolean tryconnect(String username, String password){
         for (int i = 0; i< database.length ; i++){
