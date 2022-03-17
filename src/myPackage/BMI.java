@@ -31,7 +31,7 @@ public class BMI {
 
     double calculateBMI(int age, double weight, int height){
         double totalBMI;
-        totalBMI = weight / (height * height);
+        totalBMI = weight / ((height * height)/10000);
         return totalBMI;
     }
 }

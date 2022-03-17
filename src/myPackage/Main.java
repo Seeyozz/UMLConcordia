@@ -47,7 +47,7 @@ public class Main {
                             double weight = input.nextDouble();
                             bmi.setWeight(weight);
                             double userBMI = bmi.calculateBMI(bmi.getAge(), bmi.getWeight(), bmi.getHeight());
-                            System.out.println(bmi);
+                            System.out.println(userBMI);
                             break;
                     }
 
