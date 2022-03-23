@@ -7,6 +7,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         boolean quit = false;
         boolean connected = false;
+        Login login = null;
         String[][] database = {{"pablo","password"},{"benjamin","123456"}};
         do {
             System.out.println("""
@@ -22,7 +23,7 @@ public class Main {
                         String username =input.next();
                         System.out.println("Enter your password");
                         String password = input.next();
-                        Login login = Login.getInstance(username, password);
+                        login = Login.getInstance(username, password);
                         System.out.println(login.username);
 
                         if(login.tryconnect(username,password)){
@@ -34,6 +35,24 @@ public class Main {
                         }
                     }
                     clearScreen();
+                    if (login.username.equals("pablo")){
+                        System.out.println("""
+                            What do you want to do?
+                            1- Add a prescription
+                            2- See list of future prescriptions
+                            3- See historic
+                            0- Quit""");
+                    }
+                    int select = input.nextInt();
+                    switch(select){
+                        case 1:
+
+                            break;
+
+                        case 2:
+                            break;
+
+                }
                     break;
 
                 case 2:
