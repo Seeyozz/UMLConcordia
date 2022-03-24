@@ -9,7 +9,7 @@ public class SQL {
     public Connection connection(){
         try {
 
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/customer", "root", "password.");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/customer", "root", "1998Ocanada1.");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -68,25 +68,35 @@ public class SQL {
         }
     }
 
-    public void update_Customer(int id) {
-        String medicine1;
+    public void insert_Cust(String username, String password, double bmi){
+        try {
 
 
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Enter a medicine : ");
-        medicine1 = input.next();
-
-        try{
             Connection co = connection();
 
-            Statement st = co.createStatement();
+            PreparedStatement posted = co.prepareStatement("INSERT INTO customer (Username, Password, BMI) VALUES ('"+username+"','"+password+"','"+bmi+"')");
 
-            st.executeUpdate("UPDATE Medication SET Medication = " + medicine1 + " WHERE Id = " + id + "; ");
+            posted.executeUpdate();
 
-        }catch (SQLException throwables) {
+            System.out.println("done");
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        try {
+
+            Connection co = connection();
+
+            Statement statement = co.createStatement();
+            ResultSet resultSet = statement.executeQuery("select* from customer");
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Username") + " " + resultSet.getString("Password") + " " + resultSet.getString("BMI"));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
 

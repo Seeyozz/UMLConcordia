@@ -39,19 +39,46 @@ public class Main {
                         System.out.println("""
                             What do you want to do?
                             1- Add a prescription
-                            2- See list of future prescriptions
+                            2- Add a customer
                             3- See historic
+                            4- Delete a prescription
                             0- Quit""");
                     }
                     int select = input.nextInt();
                     switch(select){
                         case 1:
 
+                            Prescription p = new Prescription();
+                            p.add();
                             break;
 
                         case 2:
+                            SQL c = new SQL();
+                            double bmi;
+                            String username;
+                            String password;
+
+                            System.out.println("Enter the username: ");
+                            username = input.next();
+                            System.out.println("Enter the password: ");
+                            password = input.next();
+                            System.out.println("Enter the bmi indice: ");
+                            bmi = input.nextDouble();
+
+                            c.insert_Cust(username,password,bmi);
+
                             break;
 
+                        case 3 :
+                            SQL s = new SQL();
+                            s.select_all_Customer();
+                            break;
+                        case 4 :
+                            SQL d = new SQL();
+                            System.out.println("What is the id of the medication ?");
+                            int id = input.nextInt();
+                            d.delete_Customer(id);
+                            break;
                 }
                     break;
 
