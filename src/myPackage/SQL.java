@@ -9,7 +9,7 @@ public class SQL {
     public Connection connection(){
         try {
 
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/customer", "root", "1998Ocanada1.");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/customer", "root", "password.");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
